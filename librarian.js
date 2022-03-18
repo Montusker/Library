@@ -67,6 +67,22 @@ function createBook(book, index) {
     bookRead.classList.add("bookRead")
     card.appendChild(bookRead);
 
+    const toggleBookRead = document.createElement('button');
+    toggleBookRead.innerHTML = "Toggle Read";
+    toggleBookRead.classList.add("toggle-read");
+
+    toggleBookRead.addEventListener('click', () => {
+        if (myLibrary[index].read == "Yes") {
+            myLibrary[index].read = "No";
+        } else {
+
+            myLibrary[index].read = "Yes";
+        }
+        drawLibrary();
+
+
+    });
+    card.appendChild(toggleBookRead);
     container.appendChild(card);
 }
 
