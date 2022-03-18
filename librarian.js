@@ -26,13 +26,27 @@ function drawLibrary() {
     }
 
     for (let i = 0; i < myLibrary.length; i++) {
-        createBook(myLibrary[i]);
+        createBook(myLibrary[i], i);
     }
 }
 
-function createBook(book) {
+function createBook(book, index) {
     const card = document.createElement('div');
     card.classList.add("card");
+
+    const closeButton = document.createElement('span');
+    closeButton.innerHTML = "&times;";
+    closeButton.setAttribute("data-index", index);
+    closeButton.classList.add("remove-book");
+
+    closeButton.addEventListener('click', () => {
+        myLibrary.splice(index, 1)
+        drawLibrary();
+    });
+
+    card.appendChild(closeButton);
+
+
     const bookTitle = document.createElement('h2');
     bookTitle.textContent = book.title;
     bookTitle.classList.add("bookTitle")
@@ -55,6 +69,8 @@ function createBook(book) {
 
     container.appendChild(card);
 }
+
+
 //  addbook form
 let modal = document.getElementById("addBookModal");
 let btn = document.getElementById("addBook");
